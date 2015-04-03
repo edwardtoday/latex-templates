@@ -1,0 +1,52 @@
+LaTeX Package : flowfram v1.17
+
+Last Modified : 2014-09-30
+
+Author        : Nicola Talbot
+
+Package FAQ   : http://www.dickimaw-books.com/faqs/flowframfaq.html
+
+Files         : flowfram.dtx     - documented source file
+                flowfram.ins     - installation script
+                flowfram.perl    - LaTeX2HTML style file (see below)
+		ffuserguide.pdf  - user manual
+		ffuserguide.html - user manual
+		ffuserguide.tex  - source code for user manual
+                samples/         - directory containing sample files
+
+Create frames for posters, brochures or magazines
+
+The flowfram package is designed to enable you to create
+frames in a document such that the contents of the 
+document environment flow from one frame to the next in the 
+order in which they were defined.  This is useful for creating 
+posters or magazines or any other form of document that does not
+conform to the standard one or two column layout.
+
+To extract the code do:
+
+latex flowfram.ins
+
+To extract the documented code do:
+
+latex flowfram.dtx
+makeindex -s gind.ist flowfram
+makeindex -s flowfram.ist -o flowfram.sgi -t flowfram.slg flowfram.sgo
+latex flowfram.dtx
+latex flowfram.dtx
+
+LATEX2HTML
+==========
+
+This package also supplies the LaTeX2HTML style file flowfram.perl.
+Note however that this is not intended to emulate the flowfram
+package. Most of the flowfram related commands are simply ignored
+(along with their arguments) to provide a simple HTML version of the
+document. The resulting HTML document will not contain any HTML 
+frames unless other packages (such as frames.perl) are used.
+
+This material is subject to the LaTeX Project Public License. 
+See http://www.ctan.org/license/lppl1.3 for the details of that license.
+
+http://www.dickimaw-books.com/
+

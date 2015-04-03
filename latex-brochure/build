@@ -1,0 +1,89 @@
+#! /bin/bash
+
+# Bourne shell script to manage the production of the 4pp LaTeX brochure
+#
+# This requires a full copy of LaTeX, and the pdf2ps and pstops utilities
+#
+# Peter Flynn, Silmaril Consultants, January 2013
+#
+# WARNING do not use Adobe Acrobat because it fouls up on the yinit
+# Metafont initial.
+
+YYYYMMDD=`date +%Y%m%d`
+
+#########################################################################
+#
+# Make the A4 version
+
+latex brochure
+pdflatex brochure
+cp brochure.pdf brochure-a4.pdf
+dvips -o brochure.ps brochure.dvi
+
+#########################################################################
+#
+# Make the Letter version (a kludge; we should rewrite as a parameter)
+
+sed -e "s+a4paper+letterpaper+" brochure.sty >tmp
+mv -f tmp brochure.sty
+pdflatex brochure
+cp brochure.pdf brochure-letter.pdf
+sed -e "s+letterpaper+a4paper+" brochure.sty >tmp
+mv -f tmp brochure.sty
+
+#########################################################################
+#
+# Make Postscript from the A4 PDF and impose it 2-up to A3 landscape
+
+echo Converting A4 to Postscript...
+pdf2ps brochure-a4.pdf
+echo Imposing...
+
+# This is how it should be (no offsets)
+#pstops -pa3 "4:-3L(29.7cm,0mm)+0L(29.7cm,21cm)" brochure-a4.ps brochure-a3folderFB.ps
+#pstops -pa3 "4:1L(29.7cm,0mm)+-2L(29.7cm,21cm)" brochure-a4.ps brochure-a3folderIN.ps
+
+# Adapted for HP DeskJet K-7100 and the Okular PDF reader under Xubuntu 12.10
+# Set the paper size to A3 Small Margins and print in Landscape mode 
+# Page images have been dragged right 2mm to accommodate the printer offset
+pstops -pa3 "4:-3L(29.7cm,-2mm)+0L(29.7cm,20.8cm)" brochure-a4.ps brochure-a3folderFB.ps
+pstops -pa3 "4:1L(29.7cm,-2mm)+-2L(29.7cm,20.8cm)" brochure-a4.ps brochure-a3folderIN.ps
+
+echo Converting front/back to PDF...
+ps2pdf -sPAPERSIZE=a3 brochure-a3folderFB.ps
+echo Converting inside pages to PDF...
+ps2pdf -sPAPERSIZE=a3 brochure-a3folderIN.ps
+
+###########################################################################
+#
+# Letter is 8.5in × 11in or 215.9mm × 279.4mm
+# Ledger is 17in × 11in or 432mm × 279mm (Tabloid is Ledger rotated,
+# so the final print probably has to lie about the orientation.)
+ 
+echo Converting Letter to Postscript...
+pdf2ps brochure-letter.pdf
+echo Imposing...
+
+# Adapted for HP DeskJet K-7100 and the Okular PDF reader under Xubuntu 12.10
+# Set the paper size to Ledger and print in Portrait mode (NOT Landscape!)
+# Page images have been dragged right 2mm to accommodate the printer offset
+pstops -ptabloid "4:-3L(11in,-2mm)+0L(11in,8.4in)" brochure-letter.ps brochure-ledgerfolderFB.ps
+pstops -ptabloid "4:1L(11in,-2mm)+-2L(11in,8.4in)" brochure-letter.ps brochure-ledgerfolderIN.ps
+
+echo Converting front/back to PDF...
+ps2pdf -sPAPERSIZE=tabloid brochure-ledgerfolderFB.ps
+echo Converting inside pages to PDF...
+ps2pdf -sPAPERSIZE=tabloid brochure-ledgerfolderIN.ps
+
+for o in FB IN; do
+    pdftoppm brochure-a3folder$o.pdf $o
+    for f in *.ppm; do 
+	pnmscale -width=512 $f|pnmtojpeg >${f/ppm/jpg}
+    done
+done
+
+lynx -dump index.html >README
+
+cat MANIFEST | zip latex-brochure-$YYYYMMDD.zip -@
+
+echo Done.

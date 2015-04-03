@@ -1,0 +1,67 @@
+                               The LaTeX Brochure
+
+   This is the most recent version (Jan 2013) of the publicity flyer for
+   LaTeX that I showed at the TUG meeting in Delaware in 2001. It is
+   designed for printing on A3 paper, double-sided, and folding once to
+   A4. This version includes a copy for Ledger paper (two Letter pages
+   side-by-side).
+
+                         Front and back
+                         Front and back Inside pages
+                                        Inside pages
+
+   If you have been maintaining a mirror or other copy of this document,
+   please update it with this version.
+
+License
+
+   This is free documentation, issued under the [1]LaTeX Project Public
+   License.
+
+Files
+
+   Source code
+   [2]brochure.tex                 24K LaTeX source
+   [3]brochure.sty                4.3K LaTeX styles
+   [4]brochure.bib                3.0K BiBTeX file
+   Output
+   [5]brochure.pdf                1.2M PDF output
+   [6]brochure-a3folderFB.pdf     1.6M A3 Front and back (PDF)
+   [7]brochure-a3folderIN.pdf     355K A3 Inside pages (PDF)
+   [8]brochure-ledgerfolderFB.pdf 1.7M Ledger Front and back (PDF)
+   [9]brochure-ledgerfolderIN.pdf 356K Ledger Inside pages (PDF)
+   Images
+   [10]diagram-crop.eps           115K Graph diagram (EPS)
+   [11]diagram-crop.pdf            11K Graph diagram (PDF)
+   [12]fullscreen.eps             1.6M Production screenshot (EPS)
+   [13]fullscreen.pdf             572K Production screenshot (PDF)
+   [14]sample-crop.eps            491K Font sampler (EPS)
+   [15]sample-crop.pdf            241K Font sampler (PDF)
+   [16]typo.eps                    35K Fake woodcut (EPS)
+   [17]typo.png                    16K Fake woodcut (PDF)
+
+   The fake woodcut has been degraded as I do not have permission to
+   distribute the original.
+
+
+    Peter Flynn
+
+References
+
+   1. http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
+   2. file://localhost/home/peter/texmf/dev/brochure/brochure.tex
+   3. file://localhost/home/peter/texmf/dev/brochure/brochure.sty
+   4. file://localhost/home/peter/texmf/dev/brochure/brochure.bib
+   5. file://localhost/home/peter/texmf/dev/brochure/brochure.pdf
+   6. file://localhost/home/peter/texmf/dev/brochure/brochure-a3folderFB.pdf
+   7. file://localhost/home/peter/texmf/dev/brochure/brochure-a3folderIN.pdf
+   8. file://localhost/home/peter/texmf/dev/brochure/brochure-ledgerfolderFB.pdf
+   9. file://localhost/home/peter/texmf/dev/brochure/brochure-ledgerfolderIN.pdf
+  10. file://localhost/home/peter/texmf/dev/brochure/diagram-crop.eps
+  11. file://localhost/home/peter/texmf/dev/brochure/diagram-crop.pdf
+  12. file://localhost/home/peter/texmf/dev/brochure/fullscreen.eps
+  13. file://localhost/home/peter/texmf/dev/brochure/fullscreen.pdf
+  14. file://localhost/home/peter/texmf/dev/brochure/sample-crop.eps
+  15. file://localhost/home/peter/texmf/dev/brochure/sample-crop.pdf
+  16. file://localhost/home/peter/texmf/dev/brochure/typo-degraded.eps
+  17. file://localhost/home/peter/texmf/dev/brochure/typo-degraded.png
